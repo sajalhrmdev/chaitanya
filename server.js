@@ -9,7 +9,8 @@ const allowedOrigins = [
   'https://sri-chaitanya-mahaprabhu-museum-entry.onrender.com',
   'https://sri-chaitanya-mahaprabhu-museum-ent.vercel.app',
   'https://your-backend-name.vercel.app',
-  'https://2gvbh86w-3001.inc1.devtunnels.ms/'
+  'https://2gvbh86w-3001.inc1.devtunnels.ms/',
+  'https://chaitanyafront-ta8d.vercel.app'
 ];
 
 // Middleware
