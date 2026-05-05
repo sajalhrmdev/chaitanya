@@ -44,11 +44,15 @@ app.get('/', (req, res) => {
 });
 
 // For Vercel deployment
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`Museum API Server running on port ${PORT}`);
-  });
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   app.listen(PORT, () => {
+//     console.log(`Museum API Server running on port ${PORT}`);
+//   });
+// }
+
+app.listen(PORT, () => {
+  console.log(`🔥 Museum API Server running on port ${PORT}`);
+});
 
 module.exports = app;
 
