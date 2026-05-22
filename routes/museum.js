@@ -232,14 +232,14 @@ router.post('/public', async (req, res) => {
 // CREATE new entry (Admin)
 router.post('/', async (req, res) => {
   try {
-    const { firstname, phone, address, num_of_persons, total_amt, payment, gallery, movie_show, discount, image_name, txn_id } = req.body;
+    const { firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery, movie_show, discount, image_name, txn_id } = req.body;
     
     const currentDate = new Date().toISOString().split('T')[0];
     const currentTime = new Date().toTimeString().split(' ')[0];
     
     const [result] = await db.execute(
-      `INSERT INTO museum_entry_2024 (date, time, firstname, phone, address, num_of_persons, total_amt, payment, gallery, movie_show, discount, image_name, txn_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [currentDate, currentTime, firstname, phone, address, num_of_persons, total_amt, payment, gallery, movie_show, discount, image_name || '', txn_id || '']
+      `INSERT INTO museum_entry_2024 (date, time, firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery, movie_show, discount, image_name, txn_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [currentDate, currentTime, firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery, movie_show, discount, image_name || '', txn_id || '']
     );
     // res.status(201).json({ id: result.insertId, message: 'Entry created successfully' });
        res.status(201).json({
@@ -252,7 +252,7 @@ router.post('/', async (req, res) => {
       num_of_persons,
       total_amt,
       payment,
-      gallery,
+      checkbox_gallery,
       movie_show,
       discount,
       image_name: image_name || '',
