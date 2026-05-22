@@ -232,15 +232,74 @@ router.post('/public', async (req, res) => {
 // CREATE new entry (Admin)
 router.post('/', async (req, res) => {
   try {
-    const { firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery, movie_show, discount, image_name, txn_id } = req.body;
+    const { firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery,gallery, movie_show, discount, image_name, txn_id,srivas_angan,checkbox_srivas_angan,jiva_uddhar,checkbox_jiva_uddhar,interactive_sankirtan,checkbox_interactive_sankirtan,vaishnav_philosophy,checkbox_vaishnav_philosophy,checkbox_movie_show
+      ,free,select_all
+     } = req.body;
     
     const currentDate = new Date().toISOString().split('T')[0];
     const currentTime = new Date().toTimeString().split(' ')[0];
     
+    // const [result] = await db.execute(
+    //   `INSERT INTO museum_entry_2024 (date, time, firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery, movie_show, discount, image_name, txn_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    //   [currentDate, currentTime, firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery, movie_show, discount, image_name || '', txn_id || '']
+    // );
+
     const [result] = await db.execute(
-      `INSERT INTO museum_entry_2024 (date, time, firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery, movie_show, discount, image_name, txn_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [currentDate, currentTime, firstname, phone, address, num_of_persons, total_amt, payment, checkbox_gallery, movie_show, discount, image_name || '', txn_id || '']
-    );
+  `INSERT INTO museum_entry_2024 
+  (
+    date,
+    time,
+    firstname,
+    phone,
+    address,
+    num_of_persons,
+    total_amt,
+    payment,
+    checkbox_gallery,
+    gallery,
+    movie_show,
+    discount,
+    image_name,
+    txn_id,
+    srivas_angan,
+    checkbox_srivas_angan,
+    jiva_uddhar,
+    checkbox_jiva_uddhar,
+    interactive_sankirtan,
+    checkbox_interactive_sankirtan,
+    vaishnav_philosophy,
+    checkbox_vaishnav_philosophy,
+    checkbox_movie_show,
+    free,select_all
+  ) 
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+  [
+    currentDate || '',
+    currentTime || '',
+    firstname || '',
+    phone || '',
+    address || '',
+    num_of_persons || 0,
+    total_amt || 0,
+    payment || '0',
+    checkbox_gallery || 'on',
+    gallery || "1",
+    movie_show || 0,
+    discount || 0,
+    image_name || '',
+    txn_id || '',
+    srivas_angan || "",
+    checkbox_srivas_angan || "",
+    jiva_uddhar || "",
+    checkbox_jiva_uddhar || "",
+    interactive_sankirtan || "",
+    checkbox_interactive_sankirtan || "",
+    vaishnav_philosophy || "",
+    checkbox_vaishnav_philosophy || "",
+    checkbox_movie_show || "",
+    free || "",select_all || ""
+  ]
+);
     // res.status(201).json({ id: result.insertId, message: 'Entry created successfully' });
        res.status(201).json({
       id: result.insertId,
