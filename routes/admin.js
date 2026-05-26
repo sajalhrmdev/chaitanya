@@ -133,27 +133,75 @@ console.log("Hashed:", hashedPassword);
 });
 
 // Update admin
+// router.put('/:id', async (req, res) => {
+//   try {
+//     const { firstname, lastname, email, mobile_no, admin_role_id, is_active } = req.body;
+    
+//     const [result] = await db.execute(
+//       `UPDATE ci_users SET firstname = ?, lastname = ?, email = ?, mobile_no = ?, 
+//                           admin_role_id = ?, is_active = ?, updated_at = NOW() 
+//        WHERE user_id = ?`,
+//       [firstname, lastname, email, mobile_no, admin_role_id, is_active, req.params.id]
+//     );
+    
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ error: 'Admin not found' });
+//     }
+    
+//     res.json({ message: 'Admin updated successfully' });
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
+// Update admin
 router.put('/:id', async (req, res) => {
   try {
-    const { firstname, lastname, email, mobile_no, admin_role_id, is_active } = req.body;
-    
+    const { 
+      firstname, 
+      lastname, 
+      email, 
+      mobile_no, 
+      admin_role_id, 
+      is_active,
+      password
+    } = req.body;
+
+    const hashedPassword = password
+      ? await bcrypt.hash(password, 10)
+      : null;
+
     const [result] = await db.execute(
-      `UPDATE ci_users SET firstname = ?, lastname = ?, email = ?, mobile_no = ?, 
-                          admin_role_id = ?, is_active = ?, updated_at = NOW() 
+      `UPDATE ci_users 
+       SET firstname = ?, 
+           lastname = ?, 
+           email = ?, 
+           mobile_no = ?, 
+           admin_role_id = ?, 
+           is_active = ?, 
+           password = COALESCE(?, password),
+           updated_at = NOW() 
        WHERE user_id = ?`,
-      [firstname, lastname, email, mobile_no, admin_role_id, is_active, req.params.id]
+      [
+        firstname,
+        lastname,
+        email,
+        mobile_no,
+        admin_role_id,
+        is_active,
+        hashedPassword,
+        req.params.id
+      ]
     );
-    
+
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: 'Admin not found' });
     }
-    
+
     res.json({ message: 'Admin updated successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
-
 // Delete admin
 router.delete('/:id', async (req, res) => {
   try {
