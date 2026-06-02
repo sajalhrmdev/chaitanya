@@ -300,9 +300,14 @@ router.post('/', async (req, res) => {
     free || "",select_all || ""
   ]
 );
+// Total row count
+const [countResult] = await db.execute(
+  `SELECT COUNT(*) AS totalRows FROM museum_entry_2024`
+);
     // res.status(201).json({ id: result.insertId, message: 'Entry created successfully' });
        res.status(201).json({
       id: result.insertId,
+       totalRows: countResult[0].totalRows,
       date: currentDate,
       time: currentTime,
       firstname,
