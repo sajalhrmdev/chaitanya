@@ -39,6 +39,8 @@ app.use('/api/admin', require('./routes/admin'));
 app.use('/api/roles', require('./routes/roles'));
 app.use('/api/museum', require('./routes/museum'));
 app.use('/api/razorpay', require('./routes/razorpay'));
+app.use('/api/camping', require('./routes/camping'));
+app.use('/api/booking', require('./routes/booking'));
 
 // Health check
 app.get('/', (req, res) => {
