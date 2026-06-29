@@ -177,6 +177,39 @@
           }
         }
       ]
+    },
+    {
+      "name": "🛡️ Permissions / Access Control",
+      "item": [
+        {
+          "name": "Get All Permissions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/permissions"
+          }
+        },
+        {
+          "name": "Get Permissions by Role ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/permissions/2"
+          }
+        },
+        {
+          "name": "Save Permissions for Role",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/permissions",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role_id\": 2,\n  \"permissions\": [\n    { \"page_key\": \"museum-entry\", \"can_view\": 1, \"can_add\": 1, \"can_edit\": 0, \"can_delete\": 0, \"can_download\": 0, \"can_print\": 1, \"is_public\": 1 },\n    { \"page_key\": \"museum-entries\", \"can_view\": 1, \"can_add\": 0, \"can_edit\": 0, \"can_delete\": 0, \"can_download\": 1, \"can_print\": 1, \"is_public\": 0 },\n    { \"page_key\": \"camping-management\", \"can_view\": 1, \"can_add\": 1, \"can_edit\": 1, \"can_delete\": 0, \"can_download\": 1, \"can_print\": 1, \"is_public\": 0 },\n    { \"page_key\": \"booking\", \"can_view\": 1, \"can_add\": 1, \"can_edit\": 0, \"can_delete\": 0, \"can_download\": 0, \"can_print\": 0, \"is_public\": 1 },\n    { \"page_key\": \"booking-list\", \"can_view\": 1, \"can_add\": 0, \"can_edit\": 0, \"can_delete\": 0, \"can_download\": 1, \"can_print\": 1, \"is_public\": 0 }\n  ]\n}"
+            }
+          }
+        }
+      ]
     }
   ]
 }
