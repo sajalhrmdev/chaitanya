@@ -42,6 +42,7 @@ app.use('/api/razorpay', require('./routes/razorpay'));
 app.use('/api/camping', require('./routes/camping'));
 app.use('/api/booking', require('./routes/booking'));
 app.use('/api/permissions', require('./routes/permissions'));
+app.use('/api/activity', require('./routes/activity'));
 
 // Health check
 app.get('/', (req, res) => {

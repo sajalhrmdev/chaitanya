@@ -210,6 +210,67 @@
           }
         }
       ]
+    },
+    {
+      "name": "📡 Activity / Analytics",
+      "item": [
+        {
+          "name": "Log Activity",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/activity/log",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"username\": \"admin\",\n  \"action\": \"page_view\",\n  \"page\": \"museum-entry\",\n  \"details\": \"Viewed museum entry form\",\n  \"city\": \"Kolkata\",\n  \"region\": \"West Bengal\",\n  \"country\": \"India\",\n  \"latitude\": 22.5726,\n  \"longitude\": 88.3639\n}"
+            }
+          }
+        },
+        {
+          "name": "Log Session",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/activity/session",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"sess_12345\",\n  \"user_id\": 1,\n  \"username\": \"admin\",\n  \"page\": \"museum-entries\",\n  \"time_spent\": 120,\n  \"clicks\": 5,\n  \"city\": \"Kolkata\",\n  \"country\": \"India\",\n  \"device\": \"Desktop\",\n  \"browser\": \"Chrome\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Activity Logs",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/activity/logs?limit=100"
+          }
+        },
+        {
+          "name": "Get Activity Logs (Filtered)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/activity/logs?username=admin&action=create&from_date=2025-07-01"
+          }
+        },
+        {
+          "name": "Get Visitor Sessions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/activity/sessions?limit=50"
+          }
+        },
+        {
+          "name": "Get Stats Summary",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/activity/stats"
+          }
+        }
+      ]
     }
   ]
 }
