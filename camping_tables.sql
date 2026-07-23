@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS campings (
   participants_count INT DEFAULT 0,
   remarks TEXT DEFAULT '',
   doctors TEXT DEFAULT '',
+  status VARCHAR(20) DEFAULT 'Active',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
