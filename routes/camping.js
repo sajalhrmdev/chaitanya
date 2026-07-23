@@ -53,8 +53,8 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// PATCH camping status
-router.patch('/:id/status', async (req, res) => {
+// PATCH / PUT / POST camping status
+const handleStatusUpdate = async (req, res) => {
   try {
     const { status } = req.body;
     if (!status || !['Active', 'Inactive'].includes(status)) {
@@ -69,7 +69,11 @@ router.patch('/:id/status', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+};
+
+router.patch('/:id/status', handleStatusUpdate);
+router.put('/:id/status', handleStatusUpdate);
+router.post('/:id/status', handleStatusUpdate);
 
 // DELETE camping
 router.delete('/:id', async (req, res) => {
